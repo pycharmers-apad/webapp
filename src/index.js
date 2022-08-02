@@ -8,8 +8,8 @@ import Signup from './components/Signup';
 import { BrowserRouter,
   Routes,
   Route} from "react-router-dom";
-import Welcome from './components/Welcome';
-import ProtectedRoute from './ProtectedRoute';
+import Projects from './components/Projects';
+import ResourceManagement from './components/ResourceManagement';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,9 +17,10 @@ root.render(
   <BrowserRouter>
     <Routes>
     <Route path='/'element={<App />} />
-    <Route exact path='/Login/' element={<Login />} />
-    <Route exact path='/Signup/'element={<Signup />} />
-    <Route exact path='/welcome/' element={<Welcome/>} />
+    <Route exact path='/login/' element={<Login />} />
+    <Route exact path='/signup/'element={<Signup />} />
+    <Route exact path='/projects/' element={<Projects />} />
+    <Route path='/projects/:id/resources/' element={<ResourceManagement />} />
     </Routes>
   </BrowserRouter>    
 );
