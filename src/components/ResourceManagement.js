@@ -12,7 +12,7 @@ const ResourceManagement=()=>{
     const [capacity,setCapacity]=useState(0)
     const [usage,setUsage]=useState(0)
 
-    capacity={"capacity": {"hwSet1": 100, "hwSet2": 100}}
+    const capacityy={"capacity": {"hwSet1": 100, "hwSet2": 100}}
 
 
     setIsloading(true)
@@ -22,7 +22,7 @@ useEffect(() => {
     .then(response=>response.json())
     .then(data=>{
         console.log(data)
-    }).then(setIsloading(false))
+    }).then(setIsloading(false)).then(console.log(capacityy))
 };
     getAllInformation();
 },[])
