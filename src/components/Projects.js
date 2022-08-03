@@ -14,6 +14,23 @@ const Projects=()=>{
         .then(data=>setUsenav(data['is_exists']))
     }
 
+
+    // hooks for projectid, projectname, project description, and api response
+    const [projectIDInput, setProjectIDInput] = useState("")
+    const [projectNameInput, setProjectNameInput] = useState("")
+    const [projectDescriptionInput, setDescriptionInput] = useState("")
+    // json that returns the response and the error
+    const [apiResponse, setApiResponse] = useState({"Response": "Default", "IDError": ""})
+
+    function handleSubmission(event) {
+        event.preventDefault();
+
+        // send json and receive json of the response and error code if any
+        fetch('http://localhost:5000/api/create_project/',{'method': 'POST',headers: {'Content-Type':'application/json','Accept':'application/json'},body: JSON.stringify({'ProjectID':projectIDInput, 'ProjectName':projectNameInput, 'ProjectDescription':projectDescriptionInput})})
+        .then(response => response.json())
+        .then(api => setApiResponse(api))
+    }
+
     
 useEffect(()=>{
     if(setNav==='true')
@@ -27,18 +44,64 @@ useEffect(()=>{
     }
     },[setNav])
 
+    // use effect to redirect user if successfully created
+    // if not successfully created then send an alert tot he user with the error
+    useEffect(()=>{
+        if (apiResponse["Response"] == 'Success'){
+            console.log("Navigating to Project Management Page")
+            navigate(`/projects/${Projectid}/resources`)
+
+        } else if (apiResponse["Response"] == "Default"){
+            //This is the default option to prevent an alert from showing up
+            //Literally do nothing :)
+        }
+        
+        else {
+            console.log('create new user failed')
+            alert(apiResponse["IDError"])
+        }
+    },[apiResponse])
+
 //Projects created by user
     return(
         <div>
-        <p>Welcome to Project Management Page</p>
-        <div>
-        <input type='text' onChange={(e)=>{setProjectId(e.target.value)}} />
-        <button onClick={onClick} className="btn btn-dark"/>
-        <p>Project Id selected:</p>
-        </div>
+            <h1>Welcome to Project Management Page</h1>
+            <h3>Choose existing project</h3>
+            <div>
+                <input type='text' onChange={(e)=>{setProjectId(e.target.value)}} />
+                <button onClick={onClick} className="btn btn-dark"/>
+                <p>Project Id selected:</p>
+            </div>
+
+            <div>
+                <h3>
+                    Create New Project
+                </h3>
+                <form onSubmit={handleSubmission}>
+                    <div>
+                    <label>
+                        Enter Project ID Here:
+                        <input type = "text" value = {projectIDInput} onChange = {e => setProjectIDInput(e.target.value)}/>
+                    </label>
+                    </div>
+                    <div>
+                    <label>
+                        Enter Project Name Here:
+                        <input type = "text" value = {projectNameInput} onChange = {e => setProjectNameInput(e.target.value)}/>
+                    </label>
+                    </div>
+                    <div>
+                    <label>
+                        Enter Project Description Here:
+                        <input type = "text" value = {projectDescriptionInput} onChange = {e => setDescriptionInput(e.target.value)}/>
+                    </label>
+                    </div>
+                    <input type = "submit" value = "Submit" />
+                </form>
+            </div>
         </div>
     )
 
 }
 
-export default Projects
+export default Projects;

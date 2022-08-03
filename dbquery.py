@@ -51,3 +51,44 @@ class projects_existing(object):
 
 class checkin_checkout(object):
     pass
+
+class create_project(object):
+    # Constant variables that indicate the name of each key in the given document 
+    # used when creating a new project
+    # Used these constants so it is easier to modify code when switching databases
+    # that might use different names for keys
+    KEY1 = "project_id" 
+    KEY2 = "project_name" 
+    KEY3 = "project_description" 
+    KEY4 = "hwSets"
+
+    def __init__(self, projectID, projectName, projectDescription, projectHWSets):
+        self.projectsCollection = mydb["projects"]
+        self.HWSets = mydb["hardware_sets"]
+        self.__projectID = projectID
+        self.__projectName = projectName
+        self.__projectDescription = projectDescription
+        self.__projectHWSets = projectHWSets
+
+    # function to check if the given input projectID is unique
+    def isProjectIDUnique(self, projectID):
+        # variable that finds if there is an existing project with the given id
+        # use KEY1 because it correlates to ProjectID
+        existingProjectID = self.projectsCollection.find_one({self.KEY1:projectID})
+
+        # if the find_one returns None then that means the project is unique return True
+        if (existingProjectID == None):
+            return True
+        # project exists so return false
+        else:
+            return False
+
+    # Function call to create the new project in mongodb
+    def createProject(self):
+        # Create the dictionary in the needed format of the uploaded document
+        newProject = {self.KEY1: self.__projectID, self.KEY2: self.__projectName, self.KEY3: self.__projectDescription, self.KEY4: self.__projectHWSets}
+
+        # insert dict into db
+        self.projectsCollection.insert_one(newProject)
+
+        return "Success"
