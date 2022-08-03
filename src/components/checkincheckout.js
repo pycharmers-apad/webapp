@@ -6,6 +6,8 @@ import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 const Cico=() => {
     const {id}=useParams();
     const [isloading,setIsloading]=useState(true);
+    const [hwSet1,setHwSet1]=useState('');
+    const [hwSet2,setHwSet2]=useState('');
 
     useEffect(()=>{
         const getData= async()=>{
@@ -22,8 +24,8 @@ const Cico=() => {
         mode: ''
       }
 
-  const onSubmit=(e)=>{
-    e.preventDefault()
+  const onSubmit=(event)=>{
+    event.preventDefault()
     const requestOptions={
       method:'POST'
     }
@@ -36,6 +38,7 @@ const Cico=() => {
         :(
 <div>
   <title>Resource Management</title>
+  <div onSubmit={onSubmit}>
   <link href="https://cdn.jsdelivr.net/npm/boots    trap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
   <h1 className="display-2">[projectName] · #[projectID]</h1>
   <h1 className="display-3">Check In/Check Out</h1>
@@ -47,20 +50,24 @@ const Cico=() => {
       <ul>
         <li>Availability: [availabilitySetX]</li>
         <li>Capacity: [capacitySetX]</li>
-        <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW1" aria-label="inputHW1" /></li>
+        <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW1" 
+        onChange={((e)=>setHwSet1(e.target.value))}     aria-label="inputHW1" /></li>
       </ul>
       <br />
       <ul>
       <li>hwSet2</li>
         <li>Availability: [availabilitySetY]</li>
         <li>Capacity: [capacitySetY]</li>
-        <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW2" aria-label="inputHW2" />
-        <button type="button" onClick={()=>{requstFrom.mode='checkin';onSubmit()}} className="btn btn-dark">Check In</button>
-        <button type="button" onClick={()=>{requstFrom.mode='checkout';onSubmit()}} className="btn btn-dark">Check Out</button></li>
+        <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW2"
+        onChange={((e)=>setHwSet2(e.target.value))} 
+        aria-label="inputHW2" />
+        <button type="button" onClick={()=>{requstFrom.mode='checkin'}} className="btn btn-dark">Check In</button>
+        <button type="button" onClick={()=>{requstFrom.mode='checkout'}} className="btn btn-dark">Check Out</button></li>
       </ul>
       </ul>
     <p />
     </form>
+    </div>
   </div>
 </div>
         )}
