@@ -31,8 +31,9 @@ useEffect(() => {
         {isloading? (console.log('loading'))
         :(
         <div>
-      <title>Resource Management</title>
-      <h1 className="display-2">{projectName}Project ID: {id}</h1>
+            <title>Resource Management</title>
+            <h1 className="display-2">{projectName}    <br>
+      </br>Project ID: {id}</h1>
       <h1 className="display-3">Resource Management</h1>
       <div className="col-lg-6">
         <hr />

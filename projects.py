@@ -23,5 +23,5 @@ def get_details(id):
     if a.is_exists():
         p=a.get_usage()
         db_output=[value for key, value in p.items() if key not in '_id']
-    return json.dumps(db_output)
+    return '1'
 
