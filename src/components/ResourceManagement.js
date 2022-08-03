@@ -15,7 +15,6 @@ const ResourceManagement=()=>{
 
 
 
-    setIsloading(true)
 useEffect(() => {
    const getAllInformation = async () => {
     fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/existingresources/`,{method:'GET'})
