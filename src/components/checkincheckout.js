@@ -15,7 +15,7 @@ const Cico=() => {
         .then(data=>console.log(data))
         .then(setIsloading(false)
     )};
-    getData()
+    getData();
     }  ,[])
 
     const requstFrom = {

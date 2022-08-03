@@ -7,5 +7,6 @@ cico=Blueprint('cico',__name__,static_folder='build', static_url_path='/')
 cors = CORS(cico, resources={r"/api/*": {"origins": "*"}})
 
 @cico.route('/api/projects/<id>/gethwdata/')
-def dn():
+def dn(id):
+    print(id)
     return json.dumps({'hwSet1':'20'})
