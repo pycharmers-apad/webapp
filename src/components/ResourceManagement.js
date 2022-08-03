@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 const ResourceManagement=()=>{
     const {id}=useParams();
     const [isloading,setIsloading]=useState(true)
-    const [projectName,setProjectName]=useState('')
-    const [resUsageX,setresUsageX]=useState('')
-    const [resUsageY,setresUsageY]=useState('')
-    const [HWSetX,setHWSetX]=useState('')
-    const [HWSetY,setHWSetY]=useState('')
+    const [projectName,setProjectName]=useState('123')
+    const [resUsageX,setresUsageX]=useState('123')
+    const [resUsageY,setresUsageY]=useState('123')
+    const [HWSetX,setHWSetX]=useState('123')
+    const [HWSetY,setHWSetY]=useState('345')
     const [capacity,setCapacity]=useState(0)
     const [usage,setUsage]=useState(0)
 
