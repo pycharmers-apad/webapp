@@ -65,7 +65,7 @@ def createProject(id):
         apiResponse["Response"] = "Fail"
         # set id error to error code 2 - project id already exists
         apiResponse["IDError"] = ID_ERROR_CODE_2
-
+        print('IS IT GOING HERE? IF YES WHY?')
     # create new project if passed all checks
     if (apiResponse == "Success"):
         project.createProject()
