@@ -11,9 +11,9 @@ const Cico=() => {
     const getData= async()=>{
         fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/gethwdata/`,{
             method:'GET'
-        }.then(response=>response.json())
+        }).then(response=>response.json())
         .then(data=>console.log(data))
-        .then(setIsloading(false))
+        .then(setIsloading(false)
     )};
     getData()
     }  ,[])
