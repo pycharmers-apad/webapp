@@ -30,7 +30,7 @@ def get_details(id):
     return json.dumps(p)
 
 
-@projects.route("/api/projects/<id>/create_project/", methods = ['POST'])
+@projects.route("/api/projects/<id>/newproject/", methods = ['POST'])
 def createProject():
     # receive post data as a json
     project = request.json

@@ -26,7 +26,7 @@ const Projects=()=>{
         event.preventDefault();
 
         // send json and receive json of the response and error code if any
-        fetch('http://localhost:5000/api/create_project/',{'method': 'POST',headers: {'Content-Type':'application/json','Accept':'application/json'},body: JSON.stringify({'ProjectID':projectIDInput, 'ProjectName':projectNameInput, 'ProjectDescription':projectDescriptionInput})})
+        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/newproject/`,{'method': 'POST',headers: {'Content-Type':'application/json','Accept':'application/json'},body: JSON.stringify({'ProjectID':projectIDInput, 'ProjectName':projectNameInput, 'ProjectDescription':projectDescriptionInput})})
         .then(response => response.json())
         .then(api => setApiResponse(api))
     }
