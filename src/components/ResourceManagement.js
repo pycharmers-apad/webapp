@@ -4,14 +4,11 @@ import { useParams } from 'react-router-dom';
 const ResourceManagement=()=>{
     const {id}=useParams();
     const [isloading,setIsloading]=useState(true)
-    const [projectName,setProjectName]=useState('123')
-    const [resUsageX,setresUsageX]=useState('123')
-    const [resUsageY,setresUsageY]=useState('123')
-    const [HWSetX,setHWSetX]=useState('123')
-    const [HWSetY,setHWSetY]=useState('345')
-    const [capacity,setCapacity]=useState(0)
-    const [usage,setUsage]=useState(0)
-
+    const [projectName,setProjectName]=useState('')
+    const [resUsageX,setresUsageX]=useState('')
+    const [resUsageY,setresUsageY]=useState('')
+    const [HWSetX,setHWSetX]=useState('')
+    const [HWSetY,setHWSetY]=useState('')
 
 
 
@@ -20,7 +17,12 @@ useEffect(() => {
     fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/existingresources/`,{method:'GET'})
     .then(response=>response.json())
     .then(data=>{
-            console.log(data)
+        setProjectName(data['project_name'])
+        setresUsageX(data['hwSets']['hwSet1'])
+        setresUsageY(data['hwSets']['hwSet2'])
+        setHWSetX(data['capacity']['hwSet1'])
+        setHWSetY(data['capacity']['hwSet2'])
+
     }).then(setIsloading(false))
 };
     getAllInformation();
@@ -32,18 +34,15 @@ useEffect(() => {
         {isloading? (console.log('loading'))
         :(
         <div>
-            <title>Resource Management</title>
-            <h1 className="display-2">{projectName}    <br>
-      </br>Project ID: {id}</h1>
-      <h1 className="display-3">Resource Management</h1>
+            <h1 className="display-2">{projectName} : {id} </h1>
       <div className="col-lg-6">
         <hr />
         <p style={{marginLeft: 5}}>{projectName} is currently using:
         </p>
         <ul>
-          <li>{resUsageX} from {HWSetX}</li>
-          <li>{resUsageY} from {HWSetY}</li>
-        </ul>
+          <li>Project:{id} is using {resUsageX} resources from a capacity of {HWSetX} resources from hwSet1</li>
+          <li>Project:{id} is using {resUsageY} resources from a capacity of {HWSetY} resources from hwSet2</li>
+        </ul> 
         <p />
       </div>
       <div className="col-lg-6" style={{marginLeft: 5}}>
