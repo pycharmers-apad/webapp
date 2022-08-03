@@ -67,8 +67,7 @@ def createProject(id):
         apiResponse["IDError"] = ID_ERROR_CODE_2
         print('IS IT GOING HERE? IF YES WHY?')
     # create new project if passed all checks
-    if (apiResponse == "Success"):
+    if (apiResponse['Response']== "Success"):
         project.createProject()
-
     # return api Response after all errors have been checked
-    return jsonify(apiResponse)
+    return json.dumps(apiResponse)
