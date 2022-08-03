@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {useNavigate} from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -11,7 +11,7 @@ const Cico=() => {
     const getData= async()=>{
         fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/gethwdata/`,{
             method:'GET'
-        }.then(response=response.json())
+        }.then(response=>response.json())
         .then(data=>console.log(data))
         .then(setIsloading(false))
     )};

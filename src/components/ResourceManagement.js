@@ -47,7 +47,7 @@ useEffect(() => {
         <p />
       </div>
       <div className="col-lg-6" style={{marginLeft: 5}}>
-        <button type="button" className="btn btn-dark" onClick={()=> { navigate(`/projects/${Projectid}/cico`)}}>Check In/Out Resources</button>
+        <button type="button" className="btn btn-dark" onClick={()=> { navigate(`/projects/${id}/cico`)}}>Check In/Out Resources</button>
       </div>
     </div>)}
 </div>)
