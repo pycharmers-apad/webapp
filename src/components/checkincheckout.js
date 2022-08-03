@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {useNavigate} from 'react-router-dom';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 const Cico=() => {
