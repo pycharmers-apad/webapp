@@ -38,7 +38,7 @@ def createProject(id):
     print(projectID)
     projectName = project['ProjectName']
     projectDescription = project['ProjectDescription']
-    projectHWSets = {}
+    projectHWSets = {'hwSet1':0,'hwSet2':0}
 
     # Error codes for project id
     # TODO: Validation for project name??? 

@@ -87,7 +87,7 @@ class create_project(object):
     def createProject(self):
         # Create the dictionary in the needed format of the uploaded document
         newProject = {self.KEY1: self.__projectID, self.KEY2: self.__projectName, self.KEY3: self.__projectDescription, self.KEY4: self.__projectHWSets}
-
+        print(newProject)
         # insert dict into db
         self.projectsCollection.insert_one(newProject)
 

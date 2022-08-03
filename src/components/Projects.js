@@ -2,7 +2,7 @@ import { useEffect,useState } from "react"
 import { Link, useParams,useNavigate, Navigate } from "react-router-dom"
 
 const Projects=()=>{    
-    const [Projectid,setProjectId]=useState(0)
+    const [Projectid,setProjectId]=useState('')
     const navigate=useNavigate()
     const [setNav,setUsenav]=useState('false')
     const onClick=(e)=>{
