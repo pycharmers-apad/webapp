@@ -16,7 +16,6 @@ const Projects=()=>{
 
 
     // hooks for projectid, projectname, project description, and api response
-    const [projectIDInput, setProjectIDInput] = useState("")
     const [projectNameInput, setProjectNameInput] = useState("")
     const [projectDescriptionInput, setDescriptionInput] = useState("")
     // json that returns the response and the error
@@ -81,7 +80,7 @@ useEffect(()=>{
                     <div>
                     <label>
                         Enter Project ID Here:
-                        <input type = "text" value = {projectIDInput} onChange = {e => setProjectIDInput(e.target.value)}/>
+                        <input type = "text" value = {projectIDInput} onChange = {e => setProjectId(e.target.value)}/>
                     </label>
                     </div>
                     <div>
