@@ -8,7 +8,7 @@ const Cico=() => {
     const [isloading,setIsloading]=useState(true);
 
     useEffect(()=>{
-    const getData= async()=>{
+        const getData= async()=>{
         fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/gethwdata/`,{
             method:'GET'
         }).then(response=>response.json())

@@ -3,6 +3,7 @@ from flask_cors import CORS
 from login import login
 from signup import signup
 from projects import projects
+from cico import cico
 
 
 app = Flask(__name__, static_folder='build', static_url_path='/')
@@ -10,6 +11,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.register_blueprint(login)
 app.register_blueprint(signup)
 app.register_blueprint(projects)
+app.register_blueprint(cico)
 
 @app.route('/',methods=['GET'])
 def index():
