@@ -16,7 +16,6 @@ const Projects=()=>{
 
 
     // hooks for projectid, projectname, project description, and api response
-    const [projectNameInput, setProjectNameInput] = useState("")
     const [projectDescriptionInput, setDescriptionInput] = useState("")
     // json that returns the response and the error
     const [apiResponse, setApiResponse] = useState({"Response": "Default", "IDError": ""})
@@ -25,7 +24,7 @@ const Projects=()=>{
         event.preventDefault();
 
         // send json and receive json of the response and error code if any
-        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/newproject/`,{'method': 'POST',headers: {'Content-Type':'application/json','Accept':'application/json'},body: JSON.stringify({'ProjectID':projectIDInput, 'ProjectName':projectNameInput, 'ProjectDescription':projectDescriptionInput})})
+        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/newproject/`,{'method': 'POST',headers: {'Content-Type':'application/json','Accept':'application/json'},body: JSON.stringify({'ProjectID':Projectid, 'ProjectName':projectNameInput, 'ProjectDescription':projectDescriptionInput})})
         .then(response => response.json())
         .then(api => setApiResponse(api))
     }
@@ -80,7 +79,7 @@ useEffect(()=>{
                     <div>
                     <label>
                         Enter Project ID Here:
-                        <input type = "text" value = {projectIDInput} onChange = {e => setProjectId(e.target.value)}/>
+                        <input type = "text" value = {Projectid} onChange = {e => setProjectId(e.target.value)}/>
                     </label>
                     </div>
                     <div>
