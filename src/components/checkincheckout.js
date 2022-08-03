@@ -36,10 +36,9 @@ const Cico=() => {
     <div>
         {isloading? (console.log('loading'))
         :(
-<div>
-  <title>Resource Management</title>
-  <div onSubmit={onSubmit}>
-  <link href="https://cdn.jsdelivr.net/npm/boots    trap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
+  <div className="App" onSubmit={onSubmit}>
+    <body>
+    <title>Resource Management</title>
   <h1 className="display-2">[projectName] · #[projectID]</h1>
   <h1 className="display-3">Check In/Check Out</h1>
   <div className="col-lg-6">
@@ -66,10 +65,11 @@ const Cico=() => {
       </ul>
       </ul>
     <p />
+  
     </form>
     </div>
-  </div>
-</div>
+    </body>
+    </div>
         )}
         </div>
 )
