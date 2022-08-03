@@ -24,12 +24,12 @@ const Cico=() => {
         mode: ''
       }
 
-  const onSubmit=(event)=>{
-    event.preventDefault()
-    const requestOptions={
+  function onSubmit(){
+        const requestOptions={
       method:'POST'
     }
     console.log('Post Data ',requstFrom.mode);
+    return false
   }
 
   return (
@@ -43,7 +43,7 @@ const Cico=() => {
   <h1 className="display-3">Check In/Check Out</h1>
   <div className="col-lg-6">
     <hr />
-    <form onSubmit={onSubmit}>
+    <form>
     <ul>
       <li>hwSet1</li>
       <ul>
@@ -60,7 +60,7 @@ const Cico=() => {
         <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW2"
         onChange={((e)=>setHwSet2(e.target.value))} 
         aria-label="inputHW2" />
-        <button type="button" onClick={()=>{requstFrom.mode='checkin'}} className="btn btn-dark">Check In</button>
+        <button type="button" onClick={()=>{requstFrom.mode='checkin';}} className="btn btn-dark">Check In</button>
         <button type="button" onClick={()=>{requstFrom.mode='checkout'}} className="btn btn-dark">Check Out</button></li>
       </ul>
       </ul>
