@@ -15,7 +15,7 @@ const Cico=() => {
         .then(data=>console.log(data))
         .then(setIsloading(false)
     )};
-    getData();
+        getData();
     }  ,[])
 
     const requstFrom = {
@@ -36,7 +36,7 @@ const Cico=() => {
         :(
 <div>
   <title>Resource Management</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/boots    trap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
   <h1 className="display-2">[projectName] · #[projectID]</h1>
   <h1 className="display-3">Check In/Check Out</h1>
   <div className="col-lg-6">
@@ -55,8 +55,8 @@ const Cico=() => {
         <li>Availability: [availabilitySetY]</li>
         <li>Capacity: [capacitySetY]</li>
         <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW2" aria-label="inputHW2" />
-        <button type="button" onClick={()=>{requstFrom.mode='checkin'}} className="btn btn-dark">Check In</button>
-        <button type="button" onClick={()=>{requstFrom.mode='checkout'}} className="btn btn-dark">Check Out</button></li>
+        <button type="button" onClick={()=>{requstFrom.mode='checkin';onSubmit()}} className="btn btn-dark">Check In</button>
+        <button type="button" onClick={()=>{requstFrom.mode='checkout';onSubmit()}} className="btn btn-dark">Check Out</button></li>
       </ul>
       </ul>
     <p />
