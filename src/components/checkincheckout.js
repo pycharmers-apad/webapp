@@ -60,8 +60,8 @@ const Cico=() => {
         <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW2"
         onChange={((e)=>setHwSet2(e.target.value))} 
         aria-label="inputHW2" />
-        <button type="button" onClick={()=>{requstFrom.mode='checkin';}} className="btn btn-dark">Check In</button>
-        <button type="button" onClick={()=>{requstFrom.mode='checkout'}} className="btn btn-dark">Check Out</button></li>
+        <button type="button" onClick={()=>{requstFrom.mode='checkin';onSubmit()}} className="btn btn-dark">Check In</button>
+        <button type="button" onClick={()=>{requstFrom.mode='checkout';onSubmit()}} className="btn btn-dark">Check Out</button></li>
       </ul>
       </ul>
     <p />
