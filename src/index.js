@@ -10,6 +10,7 @@ import { BrowserRouter,
   Route} from "react-router-dom";
 import Projects from './components/Projects';
 import ResourceManagement from './components/ResourceManagement';
+import Cico from './components/checkincheckout';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,6 +22,7 @@ root.render(
     <Route exact path='/signup/'element={<Signup />} />
     <Route exact path='/projects/' element={<Projects />} />
     <Route path='/projects/:id/resources/' element={<ResourceManagement />} />
+    <Route path='/projects/:id/cico/' element={<Cico />} />
     </Routes>
   </BrowserRouter>    
 );

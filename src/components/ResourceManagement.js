@@ -1,8 +1,9 @@
 import {useRef, useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 
 const ResourceManagement=()=>{
     const {id}=useParams();
+    const navigate=useNavigate();
     const [isloading,setIsloading]=useState(true)
     const [projectName,setProjectName]=useState('')
     const [resUsageX,setresUsageX]=useState('')
@@ -46,7 +47,7 @@ useEffect(() => {
         <p />
       </div>
       <div className="col-lg-6" style={{marginLeft: 5}}>
-        <button type="button" className="btn btn-dark">Check In/Out Resources</button>
+        <button type="button" className="btn btn-dark" onClick={()=> { navigate(`/projects/${Projectid}/cico`)}}>Check In/Out Resources</button>
       </div>
     </div>)}
 </div>)

@@ -1,6 +1,3 @@
-from flask import Flask,request,Blueprint,json
-from flask_cors import CORS
-from dbquery import projects_existing
 from venv import create
 from flask import Flask,request,Blueprint,json,jsonify
 from flask_cors import CORS
