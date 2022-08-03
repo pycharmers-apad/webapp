@@ -41,13 +41,12 @@ class projects_existing(object):
             return False
     
     def get_usage(self):
-        project_details=self.mycol.find_one({"project_id":self.__project_id})
+        project_details=self.mycol.find_one({"project_id":self.__project_id},{'_id':0})
         capacity_hwsets={}
         hwsets=self.hwsets.find()
         for i in hwsets:
-            set_val='capacity'+'_'+i['hw_set_name']
-            capacity_hwsets[set_val]=i['total_capacity']
-        project_details.update(capacity_hwsets)
+            capacity_hwsets.update({i['hw_set_name']:i['total_capacity']})
+        project_details.update({'capacity':capacity_hwsets})
         return project_details
 
 class checkin_checkout(object):

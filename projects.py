@@ -22,7 +22,5 @@ def get_details(id):
     a=projects_existing(project_id)
     if a.is_exists():
         p=a.get_usage()
-        db_output=[value for key, value in p.items() if key not in '_id']
-        print(db_output)
-    return db_output
+    return json.dumps(p)
 
