@@ -49,12 +49,11 @@ def createProject(id):
     apiResponse = {"Response": "Success", "IDError": NO_ERROR}
 
     # Validate using regex that proejct id is only numbers 
-    if not re.match("^[0-9*]+$", projectID):
-        apiResponse["Response"] = "Fail"
-        apiResponse["IDError"] = ID_ERROR_CODE_1
-    else:
+    #if not re.match("^[0-9*]+$", projectID):
+        #apiResponse["Response"] = "Fail"
+        #apiResponse["IDError"] = ID_ERROR_CODE_1
         # Turn project ID string into an int
-        projectID = int(projectID)
+    projectID = int(projectID)
 
     # Pass the first check
     # create a new project object
