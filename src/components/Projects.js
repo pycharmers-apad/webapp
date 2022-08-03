@@ -4,11 +4,29 @@ import { Link, useParams,useNavigate, Navigate } from "react-router-dom"
 const Projects=()=>{    
     const [Projectid,setProjectId]=useState(0)
     const navigate=useNavigate()
+    const [setNav,setUsenav]=useState('false')
     const onClick=(e)=>{
         e.preventDefault()
         console.log('click');
-        navigate(`/projects/${Projectid}/resources`)
+        
+        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/`,{method:'GET'})
+        .then(response=>response.json())
+        .then(data=>setUsenav(data['is_exists']))
     }
+
+    
+useEffect(()=>{
+    if(setNav==='true')
+      {
+        console.log("Navigating to Project Management Page")
+        navigate(`/projects/${Projectid}/resources`)
+
+    } 
+    else{
+      console.log('fail')
+    }
+    },[setNav])
+
 //Projects created by user
     return(
         <div>

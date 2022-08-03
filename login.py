@@ -17,10 +17,10 @@ def creds_auth():        ###Authenticate the request and send it to front end
     
     ui_creds=encryption.encryption(my_json['username'],my_json['password'])
     #auth='nouser'
+    server_creds=dbquery.creds_auth(ui_creds.uname_en)
+   
     try:
-        server_creds=dbquery.creds_db(ui_creds.uname_en)
         db_password=server_creds.findPass()
-        print(db_password)
         if db_password==ui_creds.password_en:
             auth='great success'
         else:

@@ -27,7 +27,7 @@ def login():
 def projects():
     return send_from_directory(app.static_folder,'index.html')
 
-@app.route('/projects/<id>/resources/',methods=['GET'])
+@app.route('/projects/<id>/resources/')
 def resources(id):
     print(id)
     return send_from_directory(app.static_folder,'index.html')
