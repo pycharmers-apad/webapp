@@ -31,10 +31,11 @@ def get_details(id):
 
 
 @projects.route("/api/projects/<id>/newproject/", methods = ['POST'])
-def createProject():
+def createProject(id):
     # receive post data as a json
     project = request.json
-    projectID = project['ProjectID']
+    projectID = id
+    print(projectID)
     projectName = project['ProjectName']
     projectDescription = project['ProjectDescription']
     projectHWSets = {}
