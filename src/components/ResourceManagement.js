@@ -12,7 +12,7 @@ const ResourceManagement=()=>{
     const [capacity,setCapacity]=useState(0)
     const [usage,setUsage]=useState(0)
 
-    const capacityy={"capacity": {"hwSet1": 100, "hwSet2": 100}}
+
 
 
     setIsloading(true)
@@ -21,8 +21,8 @@ useEffect(() => {
     fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/existingresources/`,{method:'GET'})
     .then(response=>response.json())
     .then(data=>{
-        console.log(data)
-    }).then(setIsloading(false)).then(console.log(capacityy))
+            console.log(data)
+    }).then(setIsloading(false))
 };
     getAllInformation();
 },[])
