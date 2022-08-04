@@ -70,9 +70,10 @@ useEffect(()=>{
             <br></br>
             <h3>Choose existing project:</h3>
             <div>
-                <input type='text' onChange={(e)=>{setProjectId(e.target.value)}} /> <button onClick={onClick} className="btn btn-dark" >Submit</button>
+                <input type='text'style={{'margin-right':5}} onChange={(e)=>{setProjectId(e.target.value)}} />
+        <button onClick={onClick} className="btn btn-dark" >Submit</button>
             </div>
-
+            <div className="auth-inner">
             <div>
                 <h3>
                     Create New Project
@@ -97,7 +98,9 @@ useEffect(()=>{
                     </label>
                     </div>
                     <input type = "submit" value = "Submit"  className="btn btn-dark"/>
+                    
                 </form>
+                </div>
             </div>
         </div>
     )

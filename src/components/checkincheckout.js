@@ -24,13 +24,13 @@ const Cico=() => {
         mode: ''
       }
 
-  function onSubmit(){
+  function onSubmit(setname){
         const requestOptions={
       method:'POST'
     }
     console.log('Post Data ',requstFrom.mode);
     const mode=requstFrom['mode']
-    console.log(hwSet1,hwSet2,mode)
+    console.log(setname,mode)
     return false
   }
 
@@ -40,38 +40,46 @@ const Cico=() => {
         :(
   <div onSubmit={onSubmit}>
     <body>
+      <div >
     <title>Resource Management</title>
-  <p>[projectName] · #[projectID]</p>
-  <p>Check In/Check Out</p>
-  <div className="col-lg-6">
-        <hr />
+  <h2 style={{"margin-left":10}}>[projectName]· #[projectID]</h2>
+  <h3 style={{"margin-left":10}}>Check In Check Out resources from shared hardware set</h3>        
+  <br></br>
     <form>
-    <ul>
-      <li>hwSet1</li>
-      <ul>
-        <li>Availability: [availabilitySetX]</li>
-        <li>Capacity: [capacitySetX]</li>
-        <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW1" 
-        onChange={((e)=>setHwSet1(e.target.value))}     aria-label="inputHW1" /></li>
-      </ul>
-      <br />
-      <ul>
-      <li>hwSet2</li>
-        <li>Availability: [availabilitySetY]</li>
-        <li>Capacity: [capacitySetY]</li>
-        <li><input className="form-control" type="text" placeholder="Enter HW Quantity" name="inputHW2"
+    <div className="auth-wrapper"style={{"width":"300px","float":"left","margin-left":'50px'}}>
+    <div className="auth-inner">
+        <h3>Hardware Set 1</h3>
+        <p>Availability: [availabilitySetX]</p>
+        <p>Capacity: [capacitySetX]</p>
+        <p>Enter Quantity to CheckIn, Checkout</p>
+        <input className="form-control" type="text" placeholder="Enter quantity to checkin/heckout" name="inputHW1"
+        onChange={((e)=>setHwSet1(e.target.value))}     aria-label="inputHW1" />
+        <button type="button" style={{'margin-left':10,'margin-top':10}}onClick={()=>{requstFrom.mode='checkin';onSubmit('hwSet1')}} className="btn btn-dark" >Check In</button>
+        <button type="button" style={{'margin-left':10,'margin-top':10}}onClick={()=>{requstFrom.mode='checkout';onSubmit('hwSet1')}} className="btn btn-dark">Check Out</button>
+          </div>
+    </div>
+    <div className="auth-wrapper" style={{"width":"300px","margin-left":'600px'}}>
+    <div className="auth-inner">
+    
+        <h3>Hardware Set 2</h3>
+        <p>Availability: [availabilitySetY]</p>
+        <p>Capacity: [capacitySetY]</p>
+        <p>Enter Quantity to CheckIn, Checkout</p>
+        <input className="form-control" type="text" placeholder="Enter quantity to checkin/checkout" name="inputHW2"
         onChange={((e)=>setHwSet2(e.target.value))} 
         aria-label="inputHW2" />
-        <button type="button" onClick={()=>{requstFrom.mode='checkin';onSubmit()}} className="btn btn-dark">Check In</button>
-        <button type="button" onClick={()=>{requstFrom.mode='checkout';onSubmit()}} className="btn btn-dark">Check Out</button></li>
-      </ul>
-      </ul>
+        <button type="button" style={{'margin-left':10,'margin-top':10}} onClick={()=>{requstFrom.mode='checkin';onSubmit('hwSet2')}} className="btn btn-dark" >Check In</button>
+        <button type="button" style={{'margin-left':10,'margin-top':10}} onClick={()=>{requstFrom.mode='checkout';onSubmit('hwSet2')}} className="btn btn-dark">Check Out</button>
+</div>
+</div>
     <p />
-  
+    
     </form>
     </div>
+    
     </body>
     </div>
+    
         )}
         </div>
 )
