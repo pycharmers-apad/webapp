@@ -1,5 +1,6 @@
 import {useRef, useState, useEffect} from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const ResourceManagement=()=>{
     const {id}=useParams();
@@ -10,7 +11,6 @@ const ResourceManagement=()=>{
     const [resUsageY,setresUsageY]=useState('')
     const [HWSetX,setHWSetX]=useState('')
     const [HWSetY,setHWSetY]=useState('')
-
 
 
 useEffect(() => {
@@ -34,6 +34,8 @@ useEffect(() => {
         <div>
         {isloading? (console.log('loading'))
         :(
+          <div>
+          <Navbar />
         <div>
             <h1 className="display-2">{projectName} : {id} </h1>
       <div className="col-lg-6">
@@ -49,6 +51,7 @@ useEffect(() => {
       <div className="col-lg-6" style={{marginLeft: 5}}>
         <button type="button" className="btn btn-dark" onClick={()=> { navigate(`/projects/${id}/cico`)}}>Check In/Out Resources</button>
       </div>
+    </div>
     </div>)}
 </div>)
 }

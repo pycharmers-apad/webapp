@@ -1,7 +1,7 @@
 import React, { useEffect,useState} from 'react'
 import { useParams,useNavigate } from 'react-router-dom';
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
-
+import Navbar from './Navbar';
 
 const Cico=() => {
     const {id}=useParams();
@@ -24,13 +24,13 @@ const Cico=() => {
         mode: ''
       }
 
-  function onSubmit(setname){
+  function onSubmit(hwset){
         const requestOptions={
       method:'POST'
     }
-    console.log('Post Data ',requstFrom.mode);
+
     const mode=requstFrom['mode']
-    console.log(setname,mode)
+    console.log(mode,hwset)
     return false
   }
 
@@ -39,6 +39,7 @@ const Cico=() => {
         {isloading? (console.log('loading'))
         :(
   <div onSubmit={onSubmit}>
+    <Navbar />     
     <body>
       <div >
     <title>Resource Management</title>
@@ -52,10 +53,10 @@ const Cico=() => {
         <p>Availability: [availabilitySetX]</p>
         <p>Capacity: [capacitySetX]</p>
         <p>Enter Quantity to CheckIn, Checkout</p>
-        <input className="form-control" type="text" placeholder="Enter quantity to checkin/heckout" name="inputHW1"
+        <input className="form-control" type="text" placeholder="Enter quantity" name="inputHW1"
         onChange={((e)=>setHwSet1(e.target.value))}     aria-label="inputHW1" />
-        <button type="button" style={{'margin-left':10,'margin-top':10}}onClick={()=>{requstFrom.mode='checkin';onSubmit('hwSet1')}} className="btn btn-dark" >Check In</button>
-        <button type="button" style={{'margin-left':10,'margin-top':10}}onClick={()=>{requstFrom.mode='checkout';onSubmit('hwSet1')}} className="btn btn-dark">Check Out</button>
+        <button type="button" style={{'margin-left':10,'margin-top':10}}onClick={()=>{requstFrom.mode='checkin';onSubmit({'hwSet1':hwSet1})}} className="btn btn-dark" >Check In</button>
+        <button type="button" style={{'margin-left':10,'margin-top':10}}onClick={()=>{requstFrom.mode='checkout';onSubmit({'hwSet1':hwSet1})}} className="btn btn-dark">Check Out</button>
           </div>
     </div>
     <div className="auth-wrapper" style={{"width":"300px","margin-left":'600px'}}>
@@ -65,11 +66,11 @@ const Cico=() => {
         <p>Availability: [availabilitySetY]</p>
         <p>Capacity: [capacitySetY]</p>
         <p>Enter Quantity to CheckIn, Checkout</p>
-        <input className="form-control" type="text" placeholder="Enter quantity to checkin/checkout" name="inputHW2"
+        <input className="form-control" type="text" placeholder="Enter quantity " name="inputHW2"
         onChange={((e)=>setHwSet2(e.target.value))} 
         aria-label="inputHW2" />
-        <button type="button" style={{'margin-left':10,'margin-top':10}} onClick={()=>{requstFrom.mode='checkin';onSubmit('hwSet2')}} className="btn btn-dark" >Check In</button>
-        <button type="button" style={{'margin-left':10,'margin-top':10}} onClick={()=>{requstFrom.mode='checkout';onSubmit('hwSet2')}} className="btn btn-dark">Check Out</button>
+        <button type="button" style={{'margin-left':10,'margin-top':10}} onClick={()=>{requstFrom.mode='checkin';onSubmit({'hwSet2':hwSet2})}} className="btn btn-dark" >Check In</button>
+        <button type="button" style={{'margin-left':10,'margin-top':10}} onClick={()=>{requstFrom.mode='checkout';onSubmit({'hwSet2':hwSet2})}} className="btn btn-dark">Check Out</button>
 </div>
 </div>
     <p />
@@ -79,7 +80,6 @@ const Cico=() => {
     
     </body>
     </div>
-    
         )}
         </div>
 )

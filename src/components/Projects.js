@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react"
 import { Link, useParams,useNavigate } from "react-router-dom"
+import Navbar from "./Navbar"
 
 const Projects=()=>{    
     const [Projectid,setProjectId]=useState('')
@@ -65,6 +66,8 @@ useEffect(()=>{
 
 //Projects created by user
     return(
+        <div>
+            <Navbar />
         <div  style={{marginLeft: 10}}>
             <h1>Welcome to Project Management Page</h1>
             <br></br>
@@ -102,6 +105,7 @@ useEffect(()=>{
                 </form>
                 </div>
             </div>
+        </div>
         </div>
     )
 
