@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react"
-import { Link, useParams,useNavigate, Navigate } from "react-router-dom"
+import { Link, useParams,useNavigate } from "react-router-dom"
 
 const Projects=()=>{    
     const [Projectid,setProjectId]=useState('')
@@ -65,13 +65,12 @@ useEffect(()=>{
 
 //Projects created by user
     return(
-        <div>
+        <div  style={{marginLeft: 10}}>
             <h1>Welcome to Project Management Page</h1>
-            <h3>Choose existing project</h3>
+            <br></br>
+            <h3>Choose existing project:</h3>
             <div>
-                <input type='text' onChange={(e)=>{setProjectId(e.target.value)}} />
-                <button onClick={onClick} className="btn btn-dark"/>
-                <p>Project Id selected:</p>
+                <input type='text' onChange={(e)=>{setProjectId(e.target.value)}} /> <button onClick={onClick} className="btn btn-dark" >Submit</button>
             </div>
 
             <div>
@@ -97,7 +96,7 @@ useEffect(()=>{
                         <input type = "text" value = {projectDescriptionInput} onChange = {e => setDescriptionInput(e.target.value)}/>
                     </label>
                     </div>
-                    <input type = "submit" value = "Submit" />
+                    <input type = "submit" value = "Submit"  className="btn btn-dark"/>
                 </form>
             </div>
         </div>

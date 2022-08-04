@@ -6,8 +6,8 @@ import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 const Cico=() => {
     const {id}=useParams();
     const [isloading,setIsloading]=useState(true);
-    const [hwSet1,setHwSet1]=useState('');
-    const [hwSet2,setHwSet2]=useState('');
+    const [hwSet1,setHwSet1]=useState(0);
+    const [hwSet2,setHwSet2]=useState(0);
 
     useEffect(()=>{
         const getData= async()=>{
@@ -29,6 +29,8 @@ const Cico=() => {
       method:'POST'
     }
     console.log('Post Data ',requstFrom.mode);
+    const mode=requstFrom['mode']
+    console.log(hwSet1,hwSet2,mode)
     return false
   }
 
@@ -36,13 +38,13 @@ const Cico=() => {
     <div>
         {isloading? (console.log('loading'))
         :(
-  <div className="App" onSubmit={onSubmit}>
+  <div onSubmit={onSubmit}>
     <body>
     <title>Resource Management</title>
-  <h1 className="display-2">[projectName] · #[projectID]</h1>
-  <h1 className="display-3">Check In/Check Out</h1>
+  <p>[projectName] · #[projectID]</p>
+  <p>Check In/Check Out</p>
   <div className="col-lg-6">
-    <hr />
+        <hr />
     <form>
     <ul>
       <li>hwSet1</li>

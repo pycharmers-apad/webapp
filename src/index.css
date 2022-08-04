@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background:gray !important;
+  background:rgb(142, 185, 182) !important;
   height: 100;
   display: flex;
   font-weight: 400;
@@ -68,4 +68,24 @@ html,
 
 .custom-control-label {
   font-weight: 400;
+}
+
+.container {
+  max-width: 100px;
+  margin: 30px auto;
+  display: flex;
+  border: 2px solid steelblue;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-gap: 20px;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: max-content 200px 1fr;
 }
