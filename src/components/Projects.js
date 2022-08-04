@@ -21,6 +21,7 @@ const Projects=()=>{
     const [projectDescriptionInput, setDescriptionInput] = useState("")
     // json that returns the response and the error
     const [apiResponse, setApiResponse] = useState({"Response": "Default", "IDError": ""})
+    const [projectIdNew,setProjectId_New]=useState("")
 
     function handleSubmission(event) {
         event.preventDefault();
@@ -51,7 +52,7 @@ useEffect(()=>{
     useEffect(()=>{
         if (apiResponse["Response"] == 'Success'){
             console.log("Navigating to Project Management Page")
-            navigate(`/projects/${Projectid}/resources`)
+            navigate(`/projects/${projectIdNew}/resources`)
 
         } else if (apiResponse["Response"] == "Default"){
             //This is the default option to prevent an alert from showing up
@@ -85,7 +86,7 @@ useEffect(()=>{
                     <div>
                     <label>
                         Enter Project ID Here:
-                        <input type = "text" value = {Projectid} onChange = {e => setProjectId(e.target.value)}/>
+                        <input type = "text" value = {Projectid} onChange = {e => setProjectId_New(e.target.value)}/>
                     </label>
                     </div>
                     <div>
