@@ -11,7 +11,7 @@ def getdata_hwset(id):
     hwset1=HWSet('hwSet1',id)
     hwset2=HWSet('hwSet2',id)
     print('project',id)
-    proj=projects_existing(id)
+    proj=projects_existing(int(id))
     project_name=proj.get_usage()
     print(project_name)
     op_dict={'hwset1':'hwset1','capacity_hwset1':hwset1.get_capacity(),'availability_hwset1':hwset1.get_availability(),\
