@@ -22,13 +22,12 @@ def cico_hw(id):
     wset=list(data['hwset'].keys())[0]
     qty=data['hwset'][wset]
     if(data['mode']=='checkin'):    
-        hwset=HWSet(wset)
+        hwset=HWSet(wset,id)
         print(int(qty))
         err_msg=hwset.check_in(int(qty))
         print(err_msg)
-
     if(data['mode']=='checkout'):
-        hwset=HWSet(wset)
+        hwset=HWSet(wset,id)
         print(int(qty))
         err_msg=hwset.check_out(int(qty))
         print(err_msg)
