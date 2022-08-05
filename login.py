@@ -9,7 +9,7 @@ cors = CORS(login, resources={r"/api/*": {"origins": "*"}})
 
 
 @login.route("/api/login/auth/", methods = ["POST"])  ###Get the creds from the post request from back end
-def creds_auth():        ###Authenticate the request and send it to front end
+def creds_auth():                                     ###Authenticate the request and send it to front end
     
     my_bytes_value = request.data
     fix_bytes_value = my_bytes_value.replace(b"'", b'"')
@@ -26,7 +26,7 @@ def creds_auth():        ###Authenticate the request and send it to front end
         else:
             auth='fail'
     except:
-        print('not working')
+        print('Not Working')
         auth='nouser'
     print(auth)
     return json.dumps({'authentication':auth})

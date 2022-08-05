@@ -32,7 +32,7 @@ useEffect(() => {
 
     return (
         <div>
-        {isloading? (console.log('loading'))
+        {isloading? (console.log('loading',isloading))
         :(
           <div>
           <Navbar />

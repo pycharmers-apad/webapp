@@ -86,7 +86,7 @@ useEffect(()=>{
                     <div>
                     <label>
                         Enter Project ID Here:
-                        <input type = "text" value = {Projectid} onChange = {e => setProjectId_New(e.target.value)}/>
+                        <input type = "text" value = {projectIdNew} onChange = {e => setProjectId_New(e.target.value)}/>
                     </label>
                     </div>
                     <div>
