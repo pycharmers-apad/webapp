@@ -44,6 +44,7 @@ class projects_existing(object):
         project_details=self.mycol.find_one({"project_id":self.__project_id},{'_id':0})
         capacity_hwsets={}
         hwsets=self.hwsets.find()
+        print(hwsets)
         for i in hwsets:
             capacity_hwsets.update({i['hw_set_name']:i['total_capacity']})
         project_details.update({'capacity':capacity_hwsets})

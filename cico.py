@@ -12,10 +12,9 @@ def getdata_hwset(id):
     hwset2=HWSet('hwSet2',id)
     proj=projects_existing(id)
     project_name=proj.get_usage()
-    ['project_name']
+    print(project_name)
     op_dict={'hwset1':'hwset1','capacity_hwset1':hwset1.get_capacity(),'availability_hwset1':hwset1.get_availability(),\
-    'hwset2':'hwset2','capacity_hwset2':hwset2.get_capacity(),'availability_hwset2':hwset2.get_availability(),
-    's':project_name['project_name']}
+    'hwset2':'hwset2','capacity_hwset2':hwset2.get_capacity(),'availability_hwset2':hwset2.get_availability(),'project_name':project_name['project_name']}
     return json.dumps(op_dict)
 
 @cico.route('/api/projects/<id>/cicodata/',methods=['POST'])
