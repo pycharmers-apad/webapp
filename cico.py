@@ -10,6 +10,7 @@ cors = CORS(cico, resources={r"/api/*": {"origins": "*"}})
 def getdata_hwset(id):
     hwset1=HWSet('hwSet1',id)
     hwset2=HWSet('hwSet2',id)
+    print('project',id)
     proj=projects_existing(id)
     project_name=proj.get_usage()
     print(project_name)

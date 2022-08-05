@@ -47,6 +47,7 @@ class projects_existing(object):
         print(hwsets)
         for i in hwsets:
             capacity_hwsets.update({i['hw_set_name']:i['total_capacity']})
+            print(hwsets,i)
         project_details.update({'capacity':capacity_hwsets})
         return project_details
     
