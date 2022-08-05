@@ -29,4 +29,4 @@ def cico_hw(id):
         hwset=HWSet(wset,int(id))
         err_msg=hwset.check_out(int(qty))
         print(err_msg)
-    return '1'
+    return json.dumps({'error_msg':err_msg})

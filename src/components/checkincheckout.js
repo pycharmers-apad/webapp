@@ -9,6 +9,7 @@ const Cico=() => {
     const [enterhwSet1,setenterHwSet1]=useState('');
     const [enterhwSet2,setenterHwSet2]=useState('');
     const [ugh,setUgh]=useState([]);
+    const [error_,setError]=useState('success');
 
     useEffect(()=>{
         const getData= async()=>{
@@ -28,19 +29,24 @@ const Cico=() => {
         mode: ''
       }
 
-  function onSubmit(hwset){
+  const onSubmit=async(hwset)=>{
         const requestOptions={
       method:'POST'
     }
 
     const mode=requstFrom['mode']
-    fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/cicodata/`,{ method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    await fetch(`https://pycharmers-apad.herokuapp.com/projects/${id}/cicodata/`,{ method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers : {
    'Content-Type':'application/json'
     },
   body:JSON.stringify({mode,'hwset':hwset})})
-    window.location.reload(false)
+    .then(response => response.json())
+      .then(api =>setError(api))
+      .then(error_=='success'?(window.location.reload(false))
+      :alert(error_['error_msg'])
+      )
     return false
+  
   }
 
   return (

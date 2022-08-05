@@ -49,43 +49,6 @@ class projects_existing(object):
         project_details.update({'capacity':capacity_hwsets})
         return project_details
     
-    
-    def check_in(self, qty, hw_set_name):
-        err_code = 0
-        
-        #current_hwSets = ProjectDB.find_one({"project_id":self.project_id})['hwSets']
-        current_hwSet_alloc = self.hwSets[hw_set_name]
-
-        new_alloc = current_hwSet_alloc - qty
-
-        if new_alloc < 0:
-            err_code = -1
-            self.hwSets[hw_set_name] = 0
-            self.mycol.update_one({"project_id":self.project_id}, {"$set": {"hwSets."+str(hw_set_name):self.hwSets[hw_set_name]}})
-        else:
-            self.hwSets[hw_set_name] = new_alloc
-            self.mycol.update_one({"project_id":self.project_id}, {"$set": {"hwSets."+str(hw_set_name):self.hwSets[hw_set_name]}})
-
-        return err_code
-
-
-    # for Project, check_out = add resources to Project
-    def check_out(self, qty, hw_set_name):
-        err_code = 0
-        HWSetDB=mydb['hardware_sets']
-        current_hwSet_alloc = self.hwSets[hw_set_name]
-        current_hwSet_avail = HWSetDB.find_one({"hw_set_name":hw_set_name})["available_capacity"]
-        
-        if qty > current_hwSet_avail:
-            err_code = -1
-            self.hwSets[hw_set_name] = current_hwSet_avail
-            self.mycol.update_one({"project_id":self.project_id}, {"$set": {"hwSets."+str(hw_set_name):self.hwSets[hw_set_name]}})
-        else:
-            self.hwSets[hw_set_name] = current_hwSet_alloc + qty
-            self.mycol.update_one({"project_id":self.project_id}, {"$set": {"hwSets."+str(hw_set_name):self.hwSets[hw_set_name]}})
-
-        return err_code
-
 class checkin_checkout(object):
     pass
 
@@ -165,7 +128,7 @@ class HWSet:
     # in the case of a user checking out a qty of more units than available, an error code of -1 is returned
     # in addition, the availability is set to zero rather than the negative number stored in new_availability
     def check_out(self, qty):
-        err_code = "Checkout"
+        err_code = "Success"
         self.availability = self.get_availability()
         self.capacity = self.get_capacity()
         
@@ -194,15 +157,15 @@ class HWSet:
 
     # if user attempts to check in more than the HWSet capacity, the availability will be set to the capacity amount
     def check_in(self, qty):
-        err_code = "Checked In"
+        err_code = "Success"
         new_availability = self.availability + qty
 
         cur_qty=int(self.selected_project['hwSets'][self.name])
         quantity_=int(qty)
-        updated_qty=cur_qty+quantity_
+        updated_qty=cur_qty-quantity_
     # if user attempts to check in more than the HWSet capacity, the availability will be set to the capacity amount
         if new_availability > self.capacity:
-            err_code = ""
+            err_code = "Tried to checkin more than available resources"
             amt_checked_in = self.capacity - self.availability
             self.availability = self.capacity
             return err_code
