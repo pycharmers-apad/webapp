@@ -12,7 +12,7 @@ function App(){
               <ol className="navbar-nav ml-auto">
               <li><a href="./signup">Sign Up   </a>   </li>
               <br></br>
-              <li>            </li>
+              <li></li>
               <li><a href="./login">  Login</a> </li>
               </ol>
             </div>
