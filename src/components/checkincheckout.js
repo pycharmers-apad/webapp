@@ -39,7 +39,7 @@ const Cico=() => {
     headers : {
    'Content-Type':'application/json'
     },
-    body:JSON.stringify({mode,'hwset':hwset})})
+  body:JSON.stringify({mode,'hwset':hwset})})
     window.location.reload(false)
     return false
   }
@@ -54,7 +54,7 @@ const Cico=() => {
     <body>
       <div >
     <title>Resource Management</title>
-  <h2 style={{"margin-left":10}}>[projectName]. #[projectID]</h2>
+  <h2 style={{"margin-left":10}}>{ugh['project_name']}. #{id}</h2>
   <h3 style={{"margin-left":10}}>Check In Check Out resources from shared hardware set</h3>        
   <br></br>
     <form>
