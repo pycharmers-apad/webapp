@@ -8,8 +8,8 @@ cors = CORS(cico, resources={r"/api/*": {"origins": "*"}})
 
 @cico.route('/api/projects/<id>/gethwdata/')
 def getdata_hwset(id):
-    hwset1=HWSet('hwSet1')
-    hwset2=HWSet('hwSet2')
+    hwset1=HWSet('hwSet1',id)
+    hwset2=HWSet('hwSet2',id)
     op_dict={'hwset1':'hwset1','capacity_hwset1':hwset1.get_capacity(),'availability_hwset1':hwset1.get_availability(),\
     'hwset2':'hwset2','capacity_hwset2':hwset2.get_capacity(),'availability_hwset2':hwset2.get_availability(),
     's':projects_existing(id)['project_name']}
