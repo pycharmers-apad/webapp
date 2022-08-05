@@ -1,7 +1,6 @@
 from venv import create
 from flask import Flask,request,Blueprint,json,jsonify
 from flask_cors import CORS
-from numpy import integer
 from dbquery import projects_existing, create_project
 import re
 
@@ -58,7 +57,7 @@ def createProject(id):
     except:
         apiResponse['Response']=ID_ERROR_CODE_1
         return json.dumps(apiResponse)
-        
+
     # Pass the first check
     # create a new project object
     project = create_project(projectID, projectName, projectDescription, projectHWSets)
