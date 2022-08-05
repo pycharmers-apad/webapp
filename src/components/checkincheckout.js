@@ -41,10 +41,8 @@ const Cico=() => {
     },
   body:JSON.stringify({mode,'hwset':hwset})})
     .then(response => response.json())
-      .then(api =>setError(api))
-      .then(error_=='success'?(window.location.reload(false))
-      :alert(error_['error_msg'])
-      )
+      window.location.reload(false)
+      
     return false
   
   }
