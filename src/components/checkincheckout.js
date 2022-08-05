@@ -12,7 +12,7 @@ const Cico=() => {
 
     useEffect(()=>{
         const getData= async()=>{
-        await fetch(`http://localhost:5000/api/projects/${id}/gethwdata/`,{
+        await fetch(`https://pycharmers-apad.herokuapp.com/api/projects/api/projects/${id}/gethwdata/`,{
             method:'GET'
         }).then(response=>response.json())
         .then(data=>{
@@ -35,7 +35,7 @@ const Cico=() => {
     }
 
     const mode=requstFrom['mode']
-    fetch(`http://localhost:5000/api/projects/${id}/cicodata/`,{ method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    fetch(`https://pycharmers-apad.herokuapp.com/api/projects/api/projects/${id}/cicodata/`,{ method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers : {
    'Content-Type':'application/json'
     },
