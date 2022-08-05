@@ -8,30 +8,25 @@ cors = CORS(cico, resources={r"/api/*": {"origins": "*"}})
 
 @cico.route('/api/projects/<id>/gethwdata/')
 def getdata_hwset(id):
-    hwset1=HWSet('hwSet1',id)
-    hwset2=HWSet('hwSet2',id)
-    print('project',id)
+    hwset1=HWSet('hwSet1',int(id))
+    hwset2=HWSet('hwSet2',int(id))
     proj=projects_existing(int(id))
     project_name=proj.get_usage()
-    print(project_name)
     op_dict={'hwset1':'hwset1','capacity_hwset1':hwset1.get_capacity(),'availability_hwset1':hwset1.get_availability(),\
     'hwset2':'hwset2','capacity_hwset2':hwset2.get_capacity(),'availability_hwset2':hwset2.get_availability(),'project_name':project_name['project_name']}
     return json.dumps(op_dict)
 
 @cico.route('/api/projects/<id>/cicodata/',methods=['POST'])
 def cico_hw(id):
-    print(id)
     data=request.json
     wset=list(data['hwset'].keys())[0]
     qty=data['hwset'][wset]
     if(data['mode']=='checkin'):    
-        hwset=HWSet(wset,id)
-        print(int(qty))
+        hwset=HWSet(wset,int(id))
         err_msg=hwset.check_in(int(qty))
         print(err_msg)
     if(data['mode']=='checkout'):
-        hwset=HWSet(wset,id)
-        print(int(qty))
+        hwset=HWSet(wset,int(id))
         err_msg=hwset.check_out(int(qty))
         print(err_msg)
     return '1'

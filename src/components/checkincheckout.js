@@ -21,8 +21,7 @@ const Cico=() => {
         })}
         getData();    
       
-      }  
-    
+      }      
     ,[])
 
     const requstFrom = {

@@ -44,10 +44,8 @@ class projects_existing(object):
         project_details=self.mycol.find_one({"project_id":self.__project_id},{'_id':0})
         capacity_hwsets={}
         hwsets=self.hwsets.find()
-        print(hwsets)
         for i in hwsets:
             capacity_hwsets.update({i['hw_set_name']:i['total_capacity']})
-            print(hwsets,i)
         project_details.update({'capacity':capacity_hwsets})
         return project_details
     
@@ -74,7 +72,7 @@ class projects_existing(object):
     # for Project, check_out = add resources to Project
     def check_out(self, qty, hw_set_name):
         err_code = 0
-        HWSetDB=mydb['hardware-sets']
+        HWSetDB=mydb['hardware_sets']
         current_hwSet_alloc = self.hwSets[hw_set_name]
         current_hwSet_avail = HWSetDB.find_one({"hw_set_name":hw_set_name})["available_capacity"]
         
@@ -139,7 +137,7 @@ class HWSet:
         self.availability = self.HWSetDB.find_one({"hw_set_name":self.name})['available_capacity']
         
         self.projectDB=mydb['projects']
-        self.project_id=id
+        self.project_id=int(id)
         self.selected_project=self.projectDB.find_one({'project_id':self.project_id})
 
     def __set_capacity__(self):
@@ -172,7 +170,6 @@ class HWSet:
         self.capacity = self.get_capacity()
         
         cur_qty=self.selected_project['hwSets'][self.name]
-        print(cur_qty)
         quantity_=int(qty)
         updated_qty=cur_qty+quantity_
         new_availability = self.availability - qty
