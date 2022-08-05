@@ -130,7 +130,7 @@ class create_project(object):
         return "Success"
     
 class HWSet:
-    def __init__(self, name,id):
+    def __init__(self, name):
         self.name = name
         self.HWSetDB=mydb['hardware_sets']
         self.capacity = self.HWSetDB.find_one({"hw_set_name":self.name})['total_capacity']
