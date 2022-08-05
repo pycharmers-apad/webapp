@@ -25,7 +25,7 @@ const onSubmit = async (event) => { //Submit the event, and send the username an
 
 }
 useEffect(()=>{
-  if(output!=='Credentials Authenticated'){
+  if(output=='Credentials Authenticated'){
   console.log(output)
   navigate('/projects')}
 },[output])
