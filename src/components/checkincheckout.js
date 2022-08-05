@@ -21,10 +21,8 @@ const Cico=() => {
           setIsloading1(false)
         })}
         getData();    
-      
       }      
     ,[])
-    
 
     const requstFrom = {
         mode: ''
