@@ -29,7 +29,7 @@ const Cico=() => {
         mode: ''
       }
 
-  const onSubmit=async(hwset)=>{
+  const onSubmit=(hwset)=>{
         const requestOptions={
       method:'POST'
     }
@@ -40,8 +40,8 @@ const Cico=() => {
    'Content-Type':'application/json'
     },
   body:JSON.stringify({mode,'hwset':hwset})})
-    .then(response => response.json())
-      window.location.reload(false)
+  
+  window.location.reload(false)
       
     return false
   
