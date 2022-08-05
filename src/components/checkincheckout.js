@@ -35,7 +35,7 @@ const Cico=() => {
     }
 
     const mode=requstFrom['mode']
-    await fetch(`https://pycharmers-apad.herokuapp.com/projects/${id}/cicodata/`,{ method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    fetch(`https://pycharmers-apad.herokuapp.com/projects/${id}/cicodata/`,{ method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers : {
    'Content-Type':'application/json'
     },
