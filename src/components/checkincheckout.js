@@ -12,7 +12,7 @@ const Cico=() => {
 
     useEffect(()=>{
         const getData= async()=>{
-        await fetch(`https://pycharmers-apad.herokuapp.com/api/projects/api/projects/${id}/gethwdata/`,{
+        await fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${id}/gethwdata/`,{
             method:'GET'
         }).then(response=>response.json())
         .then(data=>{
