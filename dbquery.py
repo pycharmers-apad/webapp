@@ -31,6 +31,7 @@ class projects_existing(object):
     def __init__(self,projectid):
         self.__project_id=projectid
         self.mycol=mydb['projects']
+        self.hwsets=mydb['hardware-sets']
 
     def is_exists(self):
         project_found = self.mycol.find_one({"project_id":int(self.__project_id)})
