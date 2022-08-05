@@ -5,17 +5,15 @@ import Navbar from "./Navbar"
 const Projects=()=>{    
     const [Projectid,setProjectId]=useState('')
     const navigate=useNavigate()
-    const [setNav,setUsenav]=useState('false')
+    const [setNav,setUsenav]=useState('default')
     const onClick=(e)=>{
         e.preventDefault()
         console.log('click');
         
-        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/`,{method:'GET'})
+       fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/`,{method:'GET'})
         .then(response=>response.json())
         .then(data=>setUsenav(data['is_exists']))
     }
-
-
     // hooks for projectid, projectname, project description, and api response
     const [projectNameInput, setProjectNameInput] = useState("")
     const [projectDescriptionInput, setDescriptionInput] = useState("")
@@ -27,7 +25,7 @@ const Projects=()=>{
         event.preventDefault();
 
         // send json and receive json of the response and error code if any
-        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${Projectid}/newproject/`,
+        fetch(`https://pycharmers-apad.herokuapp.com/api/projects/${projectIdNew}/newproject/`,
             {'method': 'POST',headers: {'Content-Type':'application/json','Accept':'application/json'},
             body: JSON.stringify({'ProjectID':Projectid, 'ProjectName':projectNameInput, 'ProjectDescription':projectDescriptionInput})})
         .then(response => response.json())
@@ -42,8 +40,9 @@ useEffect(()=>{
         navigate(`/projects/${Projectid}/resources`)
 
     } 
-    else{
-      console.log('fail')
+    else if (setNav==='noid')
+        {
+        alert('No Project iD in database')
     }
     },[setNav])
 
@@ -58,7 +57,6 @@ useEffect(()=>{
             //This is the default option to prevent an alert from showing up
             //Literally do nothing :)
         }
-        
         else {
             console.log('create new user failed')
             alert(apiResponse["IDError"])

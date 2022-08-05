@@ -14,8 +14,6 @@ def getdata_hwset(id):
     'hwset2':'hwset2','capacity_hwset2':hwset2.get_capacity(),'availability_hwset2':hwset2.get_availability()}
     return json.dumps(op_dict)
 
-
-
 @cico.route('/api/projects/<id>/cicodata/',methods=['POST'])
 def cico_hw(id):
     print(id)
@@ -27,6 +25,8 @@ def cico_hw(id):
         print(int(qty))
         err_msg=hwset.check_in(int(qty))
         print(err_msg)
+
+        
     if(data['mode']=='checkout'):
         hwset=HWSet(wset)
         print(int(qty))

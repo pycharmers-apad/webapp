@@ -39,8 +39,8 @@ const Cico=() => {
     headers : {
    'Content-Type':'application/json'
     },
-body:JSON.stringify({mode,'hwset':hwset})})
-window.location.reload(false)
+    body:JSON.stringify({mode,'hwset':hwset})})
+    window.location.reload(false)
     return false
   }
 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import '../index.css'
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
+
 const Login=()=>{
 const [username, setusername] = useState('');
 const [password,setPassword]=useState('')
@@ -44,7 +45,15 @@ useEffect(()=>{
 	
   } 
   else{
-    console.log('fail')
+    if(userAuth=='fail')
+    {
+      alert('Username or Password incorrect')
+
+    }
+    else if(userAuth=='nouser')
+    {
+      alert('No Username in database')
+    }
     setuserAuth('default')
   }
   }

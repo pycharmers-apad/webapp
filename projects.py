@@ -1,6 +1,7 @@
 from venv import create
 from flask import Flask,request,Blueprint,json,jsonify
 from flask_cors import CORS
+from numpy import integer
 from dbquery import projects_existing, create_project
 import re
 
@@ -14,7 +15,9 @@ def is_exists(id):
     a=projects_existing(project_id)
     if a.is_exists():
         return json.dumps({'is_exists':'true'})
-    else: return json.dumps({'is_exists':'false'})
+    else: 
+        print("hi")
+        return json.dumps({'is_exists':'noid'})
 
 
 
@@ -50,8 +53,12 @@ def createProject(id):
         #apiResponse["Response"] = "Fail"
         #apiResponse["IDError"] = ID_ERROR_CODE_1
         # Turn project ID string into an int
-    projectID = int(projectID)
-
+    try:
+        projectID = int(projectID)
+    except:
+        apiResponse['Response']=ID_ERROR_CODE_1
+        return json.dumps(apiResponse)
+        
     # Pass the first check
     # create a new project object
     project = create_project(projectID, projectName, projectDescription, projectHWSets)
