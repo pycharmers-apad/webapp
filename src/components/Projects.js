@@ -2,7 +2,7 @@ import { useEffect,useState } from "react"
 import { Link, useParams,useNavigate } from "react-router-dom"
 import Navbar from "./Navbar"
 
-const Projects=()=>{    
+const Projects=()=>{   
     const [Projectid,setProjectId]=useState('')
     const navigate=useNavigate()
     const [setNav,setUsenav]=useState('default')

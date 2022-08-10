@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+
+// Import the webpage components into index.js so they can be routed to
 import reportWebVitals from './reportWebVitals';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -13,6 +15,7 @@ import ResourceManagement from './components/ResourceManagement';
 import Cico from './components/checkincheckout';
 
 
+// Sets the routes for user views
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

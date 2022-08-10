@@ -5,15 +5,18 @@ import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 const Login=()=>{
-const [username, setusername] = useState('');
-const [password,setPassword]=useState('')
-const [userAuth,setuserAuth]=useState('default')
-const navigate=useNavigate()
-
+  // Hooks for user's username, password, and userAuth
+  const [username, setusername] = useState('');
+  const [password,setPassword]=useState('')
+  // userAuth token to indicate of the login was successful
+  const [userAuth,setuserAuth]=useState('default')
+  // const to navigate to different pages
+  const navigate=useNavigate()
 
   const onSubmit = async (event) => { //Submit the event, and send the username and password to Flask
     event.preventDefault()
     console.log({username,password})
+    
     setuserAuth('default')
 	  
 	  await fetch('https://pycharmers-apad.herokuapp.com/api/login/auth/', {
@@ -23,6 +26,8 @@ const navigate=useNavigate()
              },
       body:JSON.stringify({username,password})}).then(response => response.json())
       .then(api =>setuserAuth(api["authentication"]))
+
+//TODO: Remove code
 //then(response => response.json()).then(api =>setOutput(api[‘APIresponse’]))
       
 
@@ -34,30 +39,39 @@ const navigate=useNavigate()
       //.then(response=>response.json())
       //.then(data=>setuserAuth(data['authetication'])))
         
-}
-useEffect(()=>{
-  if(userAuth!='default' && userAuth!='1'){
-    if(userAuth=='great success')
-    {
-    console.log('success')
-    setuserAuth('default')
-    navigate('/projects')
-	
-  } 
-  else{
-    if(userAuth=='fail')
-    {
-      alert('Username or Password incorrect')
+  }
 
+  // use effect to update userAuth and navigate to pages based on successful authentication
+  useEffect(()=>{
+
+    // if the user auth is the default and wasn't changed to 1 then login user and navigate them
+    if(userAuth!='default' && userAuth!='1') {
+      if(userAuth=='great success')
+      {
+        console.log('success')
+        setuserAuth('default')
+        navigate('/projects')
+      } 
+
+    else {
+      // if userAuth is a fail then the password incorrect alert user
+      if(userAuth=='fail')
+      {
+        alert('Username or Password incorrect')
+
+      }
+
+      // userAuth indicates there is no user so alert user
+      else if(userAuth=='nouser')
+      {
+        alert('No Username in database')
+      }
+
+      // set the userAuth at the end if it has changed from default
+      setuserAuth('default')
     }
-    else if(userAuth=='nouser')
-    {
-      alert('No Username in database')
     }
-    setuserAuth('default')
-  }
-  }
-},[userAuth])
+  },[userAuth])
 
 return(  //Create a form and send it
 <div className="auth-wrapper">

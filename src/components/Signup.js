@@ -22,7 +22,7 @@ const onSubmit = async (event) => { //Submit the event, and send the username an
     body:JSON.stringify({username,password})}).then(response => response.json())
     .then(api =>setOutput(api["API-Signup-Response"]))
       
-
+// useEffect on changing output of the signup request
 }
 useEffect(()=>{
   if(output=='Credentials Authenticated'){

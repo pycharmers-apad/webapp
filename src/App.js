@@ -4,6 +4,7 @@ import React,{useState} from 'react';
 
 function App(){
 
+  // Returns the sing page as the home page
   return (
     <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light fixed-top">

@@ -2,24 +2,33 @@ import pymongo
 client = pymongo.MongoClient("mongodb+srv://pycharmers:McCombs2022@cluster-pycharmers.riszv1q.mongodb.net/?retryWrites=true&w=majority")
 mydb=client['resource_management']
 
+# Database connection to a user with only their name
+# Used to login user
 class creds_auth(object):
     def __init__(self,username):
         self.username=username
         self.mycol=mydb['users']
 
+    # gets the password of the user the object represents
     def findPass(self):
         res=self.mycol.find_one({"username":self.username})
         return res['password']
 
+# Child class of creds_auth that connects with the database - needs their password
+# Used to Signup user
 class creds_new(creds_auth):
     def __init__(self, username,password):
         super().__init__(username)
         self.password=password
 
+    # Creates new user in database
     def create_user(self):
         user_document = {"username": self.username, "password": self.password}
         self.mycol.insert_one(user_document)
-    
+
+    # Checks if the user exists in the database
+    # TODO: MAYBE Refactor - might be able to achieve same functionality in parent class because
+    #           password is not needed
     def is_existing_user(self):
         user_found = self.mycol.find_one({"username":self.username})
         if (user_found):
@@ -27,6 +36,7 @@ class creds_new(creds_auth):
         else:
             return False
 
+# Database connection to an existing project
 class projects_existing(object):
     def __init__(self,projectid):
         self.__project_id=projectid
@@ -40,6 +50,7 @@ class projects_existing(object):
         else:
             return False
     
+    # Gets the projects HW Usage for each HW Set
     def get_usage(self):
         project_details=self.mycol.find_one({"project_id":self.__project_id},{'_id':0})
         capacity_hwsets={}
@@ -48,10 +59,9 @@ class projects_existing(object):
             capacity_hwsets.update({i['hw_set_name']:i['total_capacity']})
         project_details.update({'capacity':capacity_hwsets})
         return project_details
-    
-class checkin_checkout(object):
-    pass
 
+# database connection to create a new project
+# used for creating a new project 
 class create_project(object):
     # Constant variables that indicate the name of each key in the given document 
     # used when creating a new project
@@ -91,9 +101,10 @@ class create_project(object):
         # insert dict into db
         self.projectsCollection.insert_one(newProject)
         return "Success"
-    
+
+# Class to connect to Hardware Sets
 class HWSet:
-    def __init__(self, name,id):
+    def __init__(self, name, id):
         self.name = name
         self.HWSetDB=mydb['hardware_sets']
         self.capacity = self.HWSetDB.find_one({"hw_set_name":self.name})['total_capacity']
