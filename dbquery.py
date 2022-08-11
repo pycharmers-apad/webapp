@@ -104,33 +104,41 @@ class create_project(object):
 
 # Class to connect to Hardware Sets
 class HWSet:
+    # when initialized, hardware sets will search for the capacity and availability within MongoDB
+    # when initialized, a hardware set object must be given a project_id with which to associate
     def __init__(self, name, id):
         self.name = name
+        # this attribute represents the hardware_set collection within MongoDB
         self.HWSetDB=mydb['hardware_sets']
         self.capacity = self.HWSetDB.find_one({"hw_set_name":self.name})['total_capacity']
         self.availability = self.HWSetDB.find_one({"hw_set_name":self.name})['available_capacity']
         
+        # this attribute represents the projects collection within MongoDB
         self.projectDB=mydb['projects']
         self.project_id=int(id)
         self.selected_project=self.projectDB.find_one({'project_id':self.project_id})
 
+    # code for setting the capacity of a hardware set - allows for scalability
     def __set_capacity__(self):
         desired_cap = input("What should the capacity of this HWSet be? ")
         self.capacity = desired_cap
         self.availability = self.capacity
     
-    # technical debt
+    # technical debt - this method could be used to add a new hardware set to MongoDB
     def add_HWSet_to_DB(self):
         pass
 
+    # simple getter for the availability attribute
     def get_availability(self):
         self.availability = self.HWSetDB.find_one({"hw_set_name":self.name})['available_capacity']
         return self.availability
 
+    # simple getter for the capacity attribute
     def get_capacity(self):
         self.capacity = self.HWSetDB.find_one({"hw_set_name":self.name})['total_capacity']
         return self.capacity
 
+    # simple getter for the checkedout_quantity attribute
     def get_checkedout_quantity(self):
         self.availability = self.HWSetDB.find_one({"hw_set_name":self.name})['available_capacity']
         self.capacity = self.HWSetDB.find_one({"hw_set_name":self.name})['total_capacity']
@@ -147,26 +155,22 @@ class HWSet:
         quantity_=int(qty)
         updated_qty=cur_qty+quantity_
         new_availability = self.availability - qty
-        # if user attempts to check out more than available, they will check out the available amount, not requested amount
+        # if user attempts to check out more than available, they will receive an error code and the DB won't be updated
         if new_availability < 0:
             amt_checked_out = self.availability
             self.availability = 0
             err_code = "Tried to checkout more than available resources"
-
-            #self.HWSetDB.update_one({"hw_set_name":self.name}, {"$set": {"available_capacity":int(self.availability), 
-            #    "capacity_in_use":int(self.capacity)}})
-
             return err_code
+        # if user checks out valid amount, the HWSet and Project databases are updated accordingly
         else:
             self.availability = new_availability
             self.HWSetDB.update_one({"hw_set_name":self.name}, {"$set": {"available_capacity":int(self.availability), 
                 "capacity_in_use":(self.capacity - self.availability)}})
 
-            
             self.projectDB.update_one({"project_id":self.project_id}, {"$set": {"hwSets."+str(self.name):updated_qty}})
             return err_code
 
-    # if user attempts to check in more than the HWSet capacity, the availability will be set to the capacity amount
+    # removes qty from project allocation and adds qty back to HWSet availability
     def check_in(self, qty):
         err_code = "Success"
         new_availability = self.availability + qty
@@ -180,6 +184,7 @@ class HWSet:
             amt_checked_in = self.capacity - self.availability
             self.availability = self.capacity
             return err_code
+        # if user attempts to check in valid amount, project and HWSet collections are updated
         else:
             self.availability = new_availability
             self.projectDB.update_one({"project_id":self.project_id}, {"$set": {"hwSets."+str(self.name):updated_qty}})
